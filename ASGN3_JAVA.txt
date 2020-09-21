@@ -1,0 +1,315 @@
+                                       
+                                Name :- Tejaswini Sommare
+                                ID :- 200240520108
+
+
+=============================================================================================================================================
+
+26.	Create an array of 17 elements in 5 rows.  And calculate sum of all elements.
+ANS->
+public class new1
+{
+   public static void main(String[] args)
+   {
+    
+      int[][] values =
+      { 
+     {2,3,4,2}, {5,6,7,8}, {3,4,5,6}, {7,1,2,1}, {6,0,0,0} 
+      };
+         int sum =0;
+     
+      for (int row = 0; row < 5; row++)
+      {
+         for (int col = 0; col < 4; col++)
+         {
+            System.out.print(values[row][col] + " ");
+
+            sum = sum + values[row][col];
+         }
+
+         System.out.println();    // Print new line.
+      }
+               System.out.print("array sum = "+sum);
+
+   }
+}
+
+output->
+2 3 4 2
+5 6 7 8
+3 4 5 6
+7 1 2 1
+6 0 0 0
+array sum = 72
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+27. Write a program to fine the smallest and greatest number present in the array of integer type.
+
+ANS->
+
+class Array{
+	
+	public static void main(String args[]){
+		int number[] = {2,3,4,6,9};
+		int biggest = number[0];
+		int smallest = number[0];
+		
+		for(int i=0; i<number.length; i++)
+		{
+			if(number[i] > biggest)
+				biggest = number[i];
+			else if(number[i] < smallest)
+				smallest = number[i];
+		}
+		System.out.println("biggest element =" + biggest);
+		System.out.println("smallest element =" + smallest);
+	}
+}
+
+output->
+biggest element =9
+smallest element =2
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+28. Initialize one String type of array and print the elements using for each loop.
+ANS->
+class ArrayString{
+
+    public static void main(String args[]){
+
+        String a[] = {"teju","yamini","ashu","pooja"};
+
+     for(int i=0; i< a.length; i++)
+     {
+        
+     }
+     System.out.println("String element in array =");
+      for(String arr : a)
+         {
+             System.out.println(arr);
+         }
+    }
+}
+
+output->
+String element in array =
+teju
+yamini
+ashu
+pooja
+
+--------------------------------------------------------------------------------------------------------------------------------------
+
+29. Write a program to print the total number of one-D arrays in a two-D array and the number of elements in
+    every one-D array present in the two-D arrays.
+ANS->
+
+class TwodArray{
+
+    public static void main(String args[]){
+
+        int a[]= {2,3,4};
+        int a1[]= {5,6,7};
+        int a3[]= {8,9,3};
+
+        int arr[][]= new int[3][];
+        arr[0]=a;
+        arr[1]=a1;
+        arr[2]=a3;
+      
+        System.out.println("Total element of one-D =");
+        for ( int i=0; i< arr.length; i++)
+        {
+            for( int j=0; j< arr[i].length; j++)
+            System.out.print(" "+ arr[i][j]);
+        }
+           
+    }
+}
+
+
+output->
+Total element of one-D =
+ 2 3 4 5 6 7 8 9 3
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
+30. Create an integer type 2-D array of size [3X3]. Take the elements from the user and then calculate 
+    the sum of the elements present in the diagonal.
+ANS->
+
+import java.util.Scanner;
+
+class TwodArray1{
+
+    public static void main(String args[]){
+
+    Scanner sc = new Scanner(System.in);
+ 
+   System.out.println("enter array element :");
+   
+     int arr[][] = new int[3][3];
+
+    int sum = 0;
+
+    for(int i=0; i<3; i++)
+    {
+        for(int j=0; j<3; j++)
+        {
+            arr[i][j] = sc.nextInt();
+
+            sum = sum + arr[i][j];
+        }
+    }
+
+    System.out.println("array element :");
+
+   for( int i=0; i<3; i++)
+   {
+       for(int j=0; j<3; j++)
+       {
+       System.out.print(" "+ arr[i][j]);
+       }
+       System.out.println(" ");
+   }
+System.out.println("sum of element = "+ sum);
+ 
+  }
+}
+
+
+output->
+
+enter array element :
+3
+4
+5
+6
+7
+8
+5
+4
+9
+array element :
+ 3 4 5
+ 6 7 8
+ 5 4 9
+sum of element = 51
+
+--------------------------------------------------------------------------------------------------------------------------------------------
+
+31. Create a class Student with 2 data members rno and name. Create one method setData() that takes roll
+  number and student name as parameter and stores them in data members rno and name. Create one more method 
+  showData() to print the data member values. Create another class ( main class) StudentDemo that creates 
+  Student class object and calls setData() and showData() methods.
+ANS->
+
+class student{
+
+       int rollno;
+        String name;
+
+        void setData(int r , String n)
+        {
+            rollno = r;
+            name = n;
+
+        }
+
+        void showData()
+            {
+                System.out.println(rollno + " " + name);
+            }
+}
+
+class studentDemo {
+        public static void main(String args[]){
+        
+        student s = new student();
+
+        s.setData(101,"teju");
+        s.showData();
+        s.setData(102,"yamini");
+        s.showData();
+        
+        }
+
+}
+
+output->
+101 teju
+102 yamini
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+32. Modify the above program (no. 31) to count the no of Student objects created. 
+    [ In this program static variable is required ]
+ANS->
+
+class student{
+
+       int rollno;
+        String name;
+
+        static int count =0;
+
+        void setData(int r , String n)
+        {
+            rollno = r;
+            name = n;
+
+        }
+
+        void showData()
+            {
+                System.out.println(rollno + " " + name);
+                count++;
+            System.out.println("no of stud object ="+count);
+            }
+
+}
+
+class studentDemo {
+        public static void main(String args[]){
+        
+        student s = new student();
+
+        s.setData(101,"teju");
+        s.showData();
+        s.setData(102,"yamini");
+        s.showData();
+        
+        }
+
+}
+
+
+output->
+101 teju
+no of stud object =1
+102 yamini
+no of stud object =2
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
