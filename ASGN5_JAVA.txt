@@ -1,0 +1,556 @@
+
+
+                                                    Name :- Tejaswini Sommare
+                                                     ID :- 200240520108
+ 
+
+===================================================================================================================================================
+43. Create a class OneBHK with instance variables roomArea, hallArea and price. Then create default constructor that initializes instance variables with some values and a parameterized constructor that takes values for all instance variables and stores them in instance variables. Now create a method named show()  to print OneBHK’s instance variable values.
+   Create another class TwoBHK which has (inherites) all the properties and behaviors of OneBHK and a new instance variable room2Area. Then create default constructor to initialize all 4 instance variables and a parameterized constructor to take the values for initialization of all instance variables. Override show() method to print all data member information.
+   Write main method in another class (Say Demo) and store three TwoBHK flat’s information and print information using show method. Also print total amount of all flats. 
+
+ANS->
+class OneBHK{
+
+    double roomArea,hallArea;
+    int price;
+
+    OneBHK()
+    {
+        
+        double roomArea = 500;
+        double hallArea = 600;
+        int price = 50000;
+         System.out.println("OneBHK Flat info:");
+    System.out.println("roomarea =" + roomArea + " " + "hallarea =" + hallArea + " " + "price =" + price);
+
+    }
+    OneBHK(double roomArea,double hallArea, int price)
+    {
+        this();
+        this.roomArea = roomArea;
+        this.hallArea = hallArea;
+        this.price = price;
+    }
+    void show()
+    {
+        System.out.println("roomarea =" + roomArea + " " + "hallarea =" + hallArea + " " + "price =" + price);
+    }
+}
+
+class TwoBHK extends OneBHK{
+     double room2Area;
+     double totAmount;
+
+     TwoBHK()
+     {
+        double roomArea;
+        double hallArea;
+        double room2Area;
+        int price;
+     }
+
+     TwoBHK(double roomArea,double hallArea, double room2Area, int price)
+     {
+        //super(400,400,40000);
+        this.roomArea = roomArea;
+        this.hallArea = hallArea;
+        this.room2Area = room2Area;
+        this.price = price;
+        totAmount= totAmount + price;
+
+     }
+
+     void show()
+     {
+         System.out.println("TwoBHK Flat info:");
+         
+        System.out.println("roomarea =" + roomArea + " " + "hallarea =" + hallArea + " " + "Room2area = " + room2Area + " " + "price =" + price);
+       
+        System.out.println("Total Amount :" + this.totAmount);
+
+     }
+}
+
+class Demo{
+
+    public static void main(String args[]){
+
+        OneBHK t = new TwoBHK(1000,600,700,90000);
+        t.show();
+        OneBHK t1 = new TwoBHK(600,600,800,80000);
+         t1.show();
+         OneBHK t3 = new OneBHK(400,400,30000);
+           t3.show();
+
+
+
+    }
+}
+
+output->
+
+OneBHK Flat info:
+roomarea =500.0 hallarea =600.0 price =50000
+TwoBHK Flat info:
+roomarea =1000.0 hallarea =600.0 Room2area = 700.0 price =90000
+Total Amount :90000.0
+OneBHK Flat info:
+roomarea =500.0 hallarea =600.0 price =50000
+TwoBHK Flat info:
+roomarea =600.0 hallarea =600.0 Room2area = 800.0 price =80000
+Total Amount :80000.0
+OneBHK Flat info:
+roomarea =500.0 hallarea =600.0 price =50000
+roomarea =400.0 hallarea =400.0 price =30000
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+44.	Create three classes
+-	Faculty with two data members facultyId and salary and two methods, one intput() method for accepting facultyId as input and another printSalary() to print salary.
+-	FullTimeFaculty that inherits class Faculty with two data members’ basicSalary and allowance. Override input() method in this class that calls super class inut() method and accepts basicSalary and allowance as input. Salary should not be accepted as input but should be calculated using formula (basicSalary + allowance)
+-	PartTimeFaculty that inherits class Faculty with two data members’ workingHours, ratePerHour. Override input() method in this class that calls super class inut() method and accepts workingHours and ratePerHour as input. Salary should not be accepted as input but should be calculated using formula ( workingHour * ratePerHour )
+
+Ans->
+
+import java.util.Scanner;
+
+class Faculty{
+    
+    public static int facultyId;
+    public int salary;
+
+ public void input()
+    {
+        facultyId++;
+        this.salary = salary;
+
+    }
+    void printSalary()
+    {
+        System.out.println(salary);
+        System.out.println("FacultyId = " + facultyId++);
+        System.out.println(" ");
+
+    }
+}
+
+class FullTimeFaculty extends Faculty{
+
+   int  basicSalary;
+   int allowance;
+public void input()
+{
+    System.out.println("enetr basicsalary and allowance ;");
+    Scanner sc = new Scanner(System.in);
+    basicSalary = sc.nextInt(); 
+    allowance = sc.nextInt();
+
+    salary = basicSalary + allowance;
+
+}
+}
+class PartTimeFaculty extends Faculty{
+
+    int workingHours;
+    int ratePerHour;
+
+    public void input()
+    {
+    
+        workingHours = 10;
+        ratePerHour= 500;
+
+        salary = workingHours * ratePerHour;
+    }
+}
+
+class demo{
+    public static void main(String args[])
+    {
+        Faculty f = new FullTimeFaculty();
+        System.out.println("FullTime Faculty Salary =");
+        f.input();
+        f.printSalary();
+
+        Faculty f1 = new PartTimeFaculty();
+         System.out.println("PartTime Faculty Salary =");
+        f1.input();
+        f1.printSalary();
+    }
+}
+
+output->
+
+FullTime Faculty Salary =
+enetr basicsalary and allowance ;
+45000
+3000
+48000
+FacultyId = 0
+
+PartTime Faculty Salary =
+4000
+FacultyId = 1
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+45. Create a class Student with two members : rollno and percentage. Create default and parameterized constructors. Create method show() to display information. 
+    Create another class CollegeStudent inherits Student class. Add a new member semester to it. Create default and parameterized constructors. 
+   Also override show() method that calls super class show() method and displays semester. Create another class SchoolStudent inherits Student class.
+  Add a new member className(eg 12th ,10th etc.) to it. Create default and parameterized constructors. Also override show() method that calls super 
+ class show() method and displays className. Create a class( say Demo) with main method that carries out the operation of the project : -- has array
+ to store objects of any class(Student,  CollegeStudent or SchoolStudent) --create two CollegeStudent  and three SchoolStudent objects and store 
+ them inside the array -- display all records from the array -- search record on the basic of rollno and check given rollno is of SchoolStudent or 
+ of CollegeStudent. --count how many students are having A grade, if for A grade percentage >75. 
+
+ANS->
+
+
+import java.util.Scanner;
+
+class Student{
+
+    int rollno;
+    float percentage;
+
+    Student(){
+        rollno =0;
+        percentage=0.0f;
+        
+    }
+    Student(int rollno,float percentage)
+    {
+        this.rollno=rollno;
+        this.percentage=percentage;
+
+    }
+
+    void show()
+    {
+        System.out.println("Student rollno and percentage = " + rollno + " " + percentage);
+        
+    }
+}
+
+class CollageStudent extends Student{
+       int Semester;
+
+       CollageStudent()
+       {
+           super();
+           Semester=1; // default
+           
+       }
+       CollageStudent(int rollno,float percentage,int Semester)
+       {
+           super(rollno,percentage); // call superclass par constructor
+           this.Semester=Semester;
+       }
+
+       void show()
+       {
+           super.show();  // override super class show and call
+           System.out.println("semester = " + Semester);
+           System.out.println("----------------------------------------------------");
+       }
+}
+
+class SchoolStudent extends Student{
+
+    int className;
+
+    SchoolStudent()
+    {
+        super();
+        className=10; //default
+        
+    }
+    SchoolStudent(int rollno,float percentage,int className)
+    {
+        super(rollno,percentage);
+        this.className=className;
+    }
+
+    void show()
+    {
+        super.show();
+        System.out.println("Student classname = " + className +"th");
+        System.out.println("----------------------------------------------------");
+    }
+}
+
+class Demo {
+
+    public static void main(String args[]){
+        Scanner sc = new Scanner(System.in);
+
+     Student s[] = new Student[5];
+      
+   for (int i=0; i<5; i++)
+   {
+       if(i < 2)
+       {
+           System.out.println("Enter details for CollageStudent :");
+
+           System.out.println("Enter rollno:");
+
+           int rollno = sc.nextInt();
+           System.out.println("Enter percentage:");
+
+           float percentage = sc.nextFloat();
+           System.out.println("enter semester:");
+           int Semester = sc.nextInt();
+
+          Student cs= new CollageStudent(rollno,percentage,Semester);
+
+            s[i]=cs;
+       }
+       else{
+           System.out.println("Enter details for SchoolStudent :");
+
+           System.out.println("Enter rollno:");
+
+           int rollno = sc.nextInt();
+           System.out.println("Enter percentage:");
+
+           float percentage = sc.nextFloat();
+           System.out.println("enter classname:");
+           int className = sc.nextInt();
+
+           Student ss = new SchoolStudent(rollno,percentage,className);
+             s[i] = ss;
+
+       }
+   }
+           System.out.println("\n\n\nTO PRINT THE DETAILS OF ARRAY \n");
+        for(int i=0; i<5; i++){
+
+            if(i < 2){
+                System.out.println("Details for College Students : ");
+                s[i].show();
+            }
+            else{
+                System.out.println("Details for College Students : ");
+                s[i].show();
+            }
+        }
+
+        
+        //TO SEARCH THE ROLL NO IN THE ARRAY
+        System.out.println("\n\n\nSEARCHING ROLL NO IN ARRAY =>\n");
+        System.out.println("Enter Roll no to search : ");
+        int roll = sc.nextInt();
+        for(int i=0; i<5; i++){
+
+            if(s[i].rollno == roll){
+                System.out.println("Details for Roll No "+roll+" : ");
+                s[i].show();
+            }
+            else
+                continue;
+        }
+
+        //TO FIND THE NO OF STUDENTS WITH GRADE A (GRADE > 75)
+        int studentCount=0;
+        for(int i=0; i<5; i++){
+
+            if(s[i].percentage > 75){
+                studentCount++;
+            }
+            else
+                continue;
+        }
+        System.out.println("\n\nNumber of Students with grade A : "+studentCount);
+
+
+
+   }
+}
+
+
+output->
+Enter details for CollageStudent :
+Enter rollno:
+1
+Enter percentage:
+80
+enter semester:
+2
+Enter details for CollageStudent :
+Enter rollno:
+2
+Enter percentage:
+76
+enter semester:
+2
+Enter details for SchoolStudent :
+Enter rollno:
+3
+Enter percentage:
+90
+enter classname:
+12
+Enter details for SchoolStudent :
+Enter rollno:
+4
+Enter percentage:
+65
+enter classname:
+10
+Enter details for SchoolStudent :
+Enter rollno:
+5
+Enter percentage:
+76
+enter classname:
+12
+
+
+
+TO PRINT THE DETAILS OF ARRAY
+
+Details for College Students :
+Student rollno and percentage = 1 80.0
+semester = 2
+----------------------------------------------------
+Details for College Students :
+Student rollno and percentage = 2 76.0
+semester = 2
+----------------------------------------------------
+Details for College Students :
+Student rollno and percentage = 3 90.0
+Student classname = 12th
+----------------------------------------------------
+Details for College Students :
+Student rollno and percentage = 4 65.0
+Student classname = 10th
+----------------------------------------------------
+Details for College Students :
+Student rollno and percentage = 5 76.0
+Student classname = 12th
+----------------------------------------------------
+
+
+
+SEARCHING ROLL NO IN ARRAY =>
+
+Enter Roll no to search :
+2
+Details for Roll No 2 :
+Student rollno and percentage = 2 76.0
+semester = 2
+----------------------------------------------------
+
+
+Number of Students with grade A : 4
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+46.	Create a program to demonstrate the use of instanceof operator or secure reference down casting.
+ANS->
+
+class Animal {
+    
+ }  
+  
+class Dog3 extends Animal {  
+  static void method(Animal a) 
+  {  
+    if(a instanceof Dog3){  
+       Dog3 d=(Dog3)a;//downcasting  
+       System.out.println("ok downcasting performed");  
+    }  
+  }  
+   
+  public static void main (String [] args) {  
+    Animal a=new Dog3();  
+    Dog3.method(a);  
+  }  
+    
+ }  
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+47. Create a program to demonstrate constructor chaining.
+ANS->
+
+class Base 
+{ 
+    String name; 
+  
+    // constructor 1 
+    Base() 
+    { 
+        this(""); 
+        System.out.println("No-argument constructor of" +  
+                                           " base class"); 
+    } 
+  
+    // constructor 2 
+    Base(String name) 
+    { 
+        this.name = name; 
+        System.out.println("Calling parameterized constructor" 
+                                              + " of base"); 
+    } 
+} 
+  
+class Derived extends Base 
+{ 
+    // constructor 3 
+    Derived() 
+    { 
+        System.out.println("No-argument constructor " +  
+                           "of derived"); 
+    } 
+  
+    // parameterized constructor 4 
+    Derived(String name) 
+    { 
+        // invokes base class constructor 2 
+        super(name); 
+        System.out.println("Calling parameterized " +  
+                           "constructor of derived"); 
+    } 
+  
+    public static void main(String args[]) 
+    { 
+        // calls parameterized constructor 4 
+        Derived obj = new Derived("test"); 
+  
+        // Calls No-argument constructor 
+        // Derived obj = new Derived(); 
+    } 
+} 
+
+
+
+output->
+
+Calling parameterized constructor of base
+Calling parameterized constructor of derived
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
