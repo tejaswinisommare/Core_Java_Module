@@ -1,0 +1,459 @@
+
+                             Name : - Tejaswini Sommare
+                              ID :- 200240520108
+
+
+
+====================================================================================================================================================
+48. Create an Abstract class Processor with int member variable data  and method showData to display data value. Create abstract method process() to
+ define processing of member data. Create a class  Factorial using abstract class Processor  to calculate and print factorial of a number by 
+ overriding the process method. b. Create a class Circle using abstract class Processor to calculate and print area of a circle by overriding the 
+ process method.Ask user to enter choice (factorial or circle area).  Also ask data to work upon. Use Processor class reference to achieve this mechanism.
+ANS->
+
+ import java.util.Scanner;
+abstract class Processor{
+
+   int data;
+
+    abstract void process();
+    
+     abstract void showData();
+
+}
+
+class Factorial extends Processor{
+     int fact = 1;
+     int no;
+  void process(){
+    System.out.println("enetr num for factorial :");
+   Scanner s = new Scanner(System.in);
+     int no = s.nextInt();
+        this.fact = fact;
+    for(int i=1; i<=no; i++)
+    {
+         fact = fact * i;
+    }
+    
+  }
+
+  void showData(){
+
+      System.out.println("factorial ="+fact);
+  }
+
+}
+
+class Circle extends Processor{
+    double pi = 3.14;
+    int r;
+    double area;
+
+    void process(){
+        System.out.println("enetr radius of circle :");
+        Scanner s1 = new Scanner(System.in);
+        int r = s1.nextInt();
+        this.pi = pi;
+
+        area = pi * r * r;
+    }
+
+    void showData(){
+
+        System.out.println("area of circle =" + area);
+    }
+}
+
+class MainClass{
+
+    public static void main(String args[]){
+
+        Factorial f = new Factorial();
+        f.process();
+        f.showData();
+
+        Circle c = new Circle();
+        c.process();
+        c.showData();
+    }
+
+
+}
+
+
+output->
+
+enetr num for factorial :
+5
+factorial =120
+enetr radius of circle :
+2
+area of circle =12.56
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+49. Create Interface Taxable with members salesTax=7% and incomeTax=10.5%. create abstract method calcTax(). a. Create class Employee(empId,name,salary)
+  and implement Taxable to calculate incomeTax on yearly salary. b. Create class Product(pid,price,quantity) and implement Taxable to calculate 
+  salesTax on unit price of product. c. Create class for main method(Say XYZ), accept employee information and a product information from user and 
+  print income tax and sales tax respectively.
+ANS->
+
+import java.util.Scanner;
+interface Taxable{
+
+     int salesTax = 7;
+     double incomeTax = 10.5;
+
+     public abstract void calcTax();
+}
+
+
+class Employee implements Taxable{
+    int empId;
+    String name;
+    double salary;
+    double incomeTax = 10.5;   // 10.5%
+
+
+   public void calcTax(){
+    System.out.println("Enter employee details:empid , name and salary");
+        Scanner sc = new Scanner(System.in);
+        int empId = sc.nextInt();
+        String name = sc.next();
+        double salary = sc.nextDouble();
+        this.incomeTax = incomeTax;
+
+        double incomeTax1 = (incomeTax/100) * salary;
+
+        System.out.println("yearly incometax = "+incomeTax1);
+
+    }
+
+}
+class Product implements Taxable{
+
+    int pid;
+    double price;
+    int quantity;
+    int salesTax = 7;
+    
+    public void calcTax(){
+    System.out.println("Enter products details:pid ,price and quantity ");
+    Scanner sc1 = new Scanner(System.in);
+    int pid = sc1.nextInt();
+    double price = sc1.nextDouble();
+    int quantity = sc1.nextInt();
+    this.salesTax = salesTax;
+
+    double salesTax1 = (price * salesTax)/100;
+
+    System.out.println("total salestax =" + salesTax1);
+
+        }
+
+}
+
+class Mainmethod{
+
+    public static void main(String args[]){
+     Employee e = new Employee();
+     e.calcTax();
+
+     Product p = new Product();
+     p.calcTax();      
+
+    }
+}
+
+output->
+
+Enter employee details:empid , name and salary
+1
+Teju
+60000
+yearly incometax = 6300.0
+Enter products details:pid ,price and quantity
+1
+15
+1
+total salestax =1.05
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+50. Explain the importance of toString() and equals() method of the Object class and override them on class Employee(empId,name,salary).  
+ a. Create class for main method(say XYZ),and accept five employees information and store in an array. Also ensure if entered empId already 
+ exist or not (use equals method).  b. Display all employee info using toString method.
+
+ANS->
+package demo;
+
+import java.util.Scanner;
+
+
+class Demo{
+	
+	public static void main(String args[]) {
+	    try (Scanner sc = new Scanner(System.in)) {
+			Employee[] e = new Employee[3];
+   
+			
+			for(int i=0; i<3; i++) {
+			System.out.println("Enter empid :");
+			  int empID = sc.nextInt();
+			System.out.println("Enter name:");
+			  String name = sc.next();
+				System.out.println("Enter salary :");
+			  double salary = sc.nextDouble();
+			   
+			 Employee e1 = new Employee(empID,name,salary);
+			 
+			    e[i]=e1;
+			
+			}			  
+				for(Employee a : e) {
+					System.out.println("Emp details :" + a);
+				}
+				int count =0;
+				for(int i=0; i<3; i++)
+				{
+					for (int j=i+1; j<3; j++) {
+						   if(e[i].equals(e[j]))
+							  {
+							System.out.println("the ID are allready present : you Create duplicate Id= "+e[i].empID);
+							count++;
+							   }
+					   }
+
+				}
+				System.out.println("Total duplicate values = "+count);
+
+				System.out.println("Renter Details:");
+				for(int k=0; k<count; k++) {
+					System.out.println("Enter empid :");
+					  int empID = sc.nextInt();
+					System.out.println("Enter name:");
+					  String name = sc.next();
+						System.out.println("Enter salary :");
+					  double salary = sc.nextDouble();
+					   
+					 Employee e1 = new Employee(empID,name,salary);
+					 
+					    e[k]=e1;
+					
+					}			  
+						for(Employee a : e) {
+							System.out.println("Emp details :" + a);
+						}
+     }
+   }
+}
+public class Employee {
+
+int empID;
+   String name;
+   double salary;
+   
+
+public Employee(int empID, String name, double salary) {
+	super();
+	this.empID = empID;
+	this.name = name;
+	this.salary = salary;
+}
+
+@Override
+public String toString() {
+	return "Employee [empID=" + empID + ", name=" + name + ", salary=" + salary + "]";
+}
+
+@Override
+public boolean equals(Object obj) {
+	Employee t = (Employee) obj;
+	  boolean isEqual = this.empID == t.empID;
+	return isEqual;
+	  
+	  
+}
+
+}
+
+output->
+Enter empid :
+1
+Enter name:
+teju
+Enter salary :
+77
+Enter empid :
+1
+Enter name:
+r
+Enter salary :
+4
+Enter empid :
+2
+Enter name:
+r
+Enter salary :
+54
+Emp details :Employee [empID=1, name=teju, salary=77.0]
+Emp details :Employee [empID=1, name=r, salary=4.0]
+Emp details :Employee [empID=2, name=r, salary=54.0]
+the ID are allready present : you Create duplicate Id = 1
+Total duplicate Id  = 1
+Renter Details:
+Enter empid :
+4
+Enter name:
+t
+Enter salary :
+45
+Emp details :Employee [empID=4, name=t, salary=45.0]
+Emp details :Employee [empID=1, name=r, salary=4.0]
+Emp details :Employee [empID=2, name=r, salary=54.0]
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+51. Create a program that helps banks to maintain records. It should have following facilities. o Anybody can create current or saving account 
+  with following initial information: account number, name, balance, and branch. o display account detail for a particular accounts. o display 
+ total money deposited in bank. o allow deposit and  withdrawal in an account  . o for saving account opening balance and minimum balance must
+ be 5000. o for current account opening balance and minimum balance must be 1000. o can not withdraw the amount from the account that makes balance
+ less than the minimum balance. 
+ANS->
+
+
+package demo;
+
+import java.util.Scanner;
+class BankAccount {
+	static Scanner input = new Scanner(System.in);
+	String name, actype,branch;
+	int accNo, bal, amt;
+
+	BankAccount(String name, int accNo, String actype, int bal,String branch) {
+		this.name = name;
+		this.accNo = accNo;
+		this.actype = actype;
+		if(bal>=5000)
+		this.bal = bal;
+		this.branch=branch;
+	}
+	
+		
+	int deposit() {
+		System.out.print("Enter amount to deposit:");
+		amt = input.nextInt();
+		if (amt < 0) {
+			System.out.println("Invalid Amount");
+			return 1;
+		}
+		bal = bal + amt;
+		return 0;
+	}
+
+	int withdraw() {
+		//System.out.println("Your Balance=" + bal);
+		System.out.print("Enter amount to withdraw:");
+		amt = input.nextInt();
+		if (1000 < amt) {
+			System.out.println("Not sufficient balance.");
+			return 1;
+		}
+		if (amt < 0) {
+			System.out.println("Invalid Amount");
+			return 1;
+		}
+		bal = bal - amt;
+		return 0;
+	}
+
+	void display() {
+		System.out.println("Name:" + name);
+		System.out.println("Account No:" + accNo);
+		System.out.println("Balance:" + bal);
+		System.out.println("Branch :" + branch);
+
+	}
+
+	void dbal() {
+		System.out.println("Balance:" + bal);
+	}
+
+	public static void main(String args[]) {
+		System.out.println("Enter your Name: ");
+		String nn = input.nextLine();
+		System.out.println("Enter Account Number: ");
+		int num = input.nextInt();
+		System.out.println("Enter Account Type: ");
+		String type = input.next();
+		System.out.println("Enter Initial Balance MIN 5000: ");
+		int bal = input.nextInt();
+		System.out.println("Enter Branch: ");
+		String branch = input.next();
+
+		BankAccount b1 = new BankAccount(nn, num, type, bal,branch);
+		int menu;
+		System.out.println("Menu");
+		System.out.println("1. Deposit Amount");
+		System.out.println("2. Withdraw Amount");
+		System.out.println("3. Display Information");
+		System.out.println("4. Exit");
+		boolean quit = false;
+		do {
+			System.out.print("Please enter your choice: ");
+			menu = input.nextInt();
+			switch (menu) {
+			case 1:
+				b1.deposit();
+				break;
+
+			case 2:
+				b1.withdraw();
+				break;
+
+			case 3:
+				b1.display();
+				break;
+
+			case 4:
+				quit = true;
+				break;
+			}
+		} while (!quit);
+	}
+}
+
+
+output->
+
+Enter your Name: 
+teju
+Enter Account Number: 
+111
+Enter Account Type: 
+saving
+Enter Initial Balance MIN 5000: 
+5000
+Enter Branch: 
+sbi
+Menu
+1. Deposit Amount
+2. Withdraw Amount
+3. Display Information
+4. Exit
+Please enter your choice: 3
+Name:teju
+Account No:111
+Balance:5000
+Branch :sbi
+Please enter your choice: 2
+Enter amount to withdraw:1000
+Please enter your choice: 1
+Enter amount to deposit:1000
+Please enter your choice: 3
+Name:teju
+Account No:111
+Balance:5000
+Branch :sbi
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
